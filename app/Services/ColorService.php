@@ -1,17 +1,17 @@
 <?php namespace App\Services;
 
-class UserService extends AbstractService {
+class ColorService extends AbstractService {
     
     public function find($id = 0){
 
-        return $this->_dal()->query('SELECT * FROM `user` WHERE `id` = '. $id)
+        return $this->_dal()->query('SELECT * FROM `colors` WHERE `id` = '. $id)
             ->fetch(\PDO::FETCH_ASSOC);
    }
     
     public function create($data =[]){
         
         $this->_dal()
-            ->prepare('INSERT INTO `user`(`email`, `name`) VALUES(?, ?)')
+            ->prepare('INSERT INTO `colors`(`name`, `hex`) VALUES(?, ?)')
                 ->execute(array_values($data)); 
     }
     
@@ -20,7 +20,7 @@ class UserService extends AbstractService {
         $data[] = $id;
 
         $this->_dal()
-            ->prepare('UPDATE `user` SET `email` = ?,  `name` = ? WHERE `id` = ?')
+            ->prepare('UPDATE `colors` SET `name` = ?,  `hex` = ? WHERE `id` = ?')
                 ->execute(array_values($data));
     }
     
@@ -33,7 +33,7 @@ class UserService extends AbstractService {
     
     public function paginate($filter = []){
         
-        $query  = 'SELECT SQL_CALC_FOUND_ROWS * FROM `user` ';
+        $query  = 'SELECT SQL_CALC_FOUND_ROWS * FROM `colors` ';
         $query .= 'ORDER BY `id` DESC ';
         $query .= sprintf('LIMIT %s, %s ', array_get($filter, 'offset', 0), array_get($filter, 'limit', 10));
 

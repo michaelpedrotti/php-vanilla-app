@@ -1,7 +1,11 @@
 <?php namespace App\Controllers;
 
 abstract class AbstractController {
-       
+     
+    static protected $vars = [];
+    
+    static protected $flash = [];
+    
     static protected $tplEngine;
     
     /**
@@ -28,6 +32,6 @@ abstract class AbstractController {
     static protected function _view($viewpath = '', $vars = []){
         
         
-        return static::_tplEngine()->render($viewpath, $vars);
+        return static::_tplEngine()->render($viewpath, array_merge($vars, static::$vars, ['$flash' => $flash]));
     }
 }

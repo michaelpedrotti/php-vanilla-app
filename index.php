@@ -60,7 +60,7 @@ if(class_exists($className)){
         $args = ['id' => $id];
        
         
-        print call_user_func_array([$controller, $action], [$args]); 
+        print call_user_func_array([$controller, $action], $args); 
     }
     else {
         

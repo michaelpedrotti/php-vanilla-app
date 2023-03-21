@@ -1,36 +1,86 @@
 <?php namespace App\Controllers;
 
 class ColorController extends AbstractController {
-    
+       
     static public function new(){
         
-        return 'new';
+        return static::_view('color/new.twig');
         
     }
     
     static public function create(){
         
-        return 'create';
+        try {
+           
+            $service = new \App\Services\ColorService();
+            $service->create(filter_body(['email', 'name']));
+            
+            redirect('/color');
+        }
+        catch (\Exception $e) {
+            
+            print $e->getMessage();
+            print $e->getTraceAsString();
+            
+            static::$flash[] = ['message' => $e->getMessage(), 'level' => 'danger'];
+            
+            return static::new();
+        }
     }
     
     
-    static public function show(){
+    static public function show($id = 0){
         
-        return 'show';
+        $service = new \App\Services\ColorService();
+        $data = $service->find($id);
+        
+        if(empty($data)){
+            
+            // Flash messag
+            redirect('/color');
+        }
+        
+        
+        return static::_view('color/show.twig', ['data' => $data]);
         
     }
     
     
-    static public function edit(){
+    static public function edit($id = 0){
         
-        return 'edit';
+        $service = new \App\Services\ColorService();
+        $data = $service->find($id);
+        
+        if(empty($data)){
+            
+            // Flash messag
+            redirect('/color');
+        }
+        
+        
+        return static::_view('color/edit.twig', ['data' => $data]);
         
     }
     
     
-    static public function update(){
+    static public function update($id = 0){
         
-        return 'update';
+        try {
+           
+            $service = new \App\Services\ColorService();
+            $service->update(filter_body(['email', 'name']), $id);
+            
+            redirect('/color');
+        }
+        catch (\Exception $e) {
+            
+            print $e->getMessage();
+            print $e->getTraceAsString();
+            
+            static::$flash[] = ['message' => $e->getMessage(), 'level' => 'danger'];
+            
+            return static::new();
+        }
     }
     
     
@@ -42,7 +92,7 @@ class ColorController extends AbstractController {
     
     static public function index(){
         
-        $service = new \App\Services\UserService();
+        $service = new \App\Services\ColorService();
         $vars = $service->paginate();
         
         return static::_view('color/index.twig', $vars);

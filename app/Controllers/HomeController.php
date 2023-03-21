@@ -1,10 +1,9 @@
 <?php namespace App\Controllers;
 
-class HomeController {
+class HomeController extends AbstractController {
        
     static public function index(){
         
-        
-        print 'Hello World';
+        return static::_view('home/index.twig');
     }
 }
