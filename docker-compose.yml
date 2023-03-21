@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: php-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+    ports:
+      - 3306:3306
+    network_mode: bridge  
+  platform:
+    image: php:7.2.34-cli-alpine
+    container_name: php-app
+    working_dir: /var/www/html
+    links:
+       - mysql
+    volumes:
+      - .:/var/www/html
+    ports:
+        - 8000:8000
+    command: php -S 0.0.0.0:8000
+    network_mode: bridge
