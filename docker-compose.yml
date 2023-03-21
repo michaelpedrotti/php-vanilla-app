@@ -9,8 +9,11 @@ services:
     ports:
       - 3306:3306
     network_mode: bridge  
-  platform:
-    image: php:7.2.34-cli-alpine
+  app:
+    # image: php:7.2.34-cli-alpine
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     container_name: php-app
     working_dir: /var/www/html
     links:

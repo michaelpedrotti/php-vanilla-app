@@ -35,7 +35,7 @@
         {% endif %}
     </tbody>
     <tfoot>
-        0 of 10 from {{ total }}  
+        {{ offset + 1 }} of {{ limit }} from {{ total }}    
     </tfoot>
 </table>
 {% endblock %}

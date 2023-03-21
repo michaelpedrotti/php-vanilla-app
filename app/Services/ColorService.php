@@ -77,11 +77,11 @@ class ColorService extends AbstractService {
         $query .= 'ORDER BY `id` DESC ';
         $query .= sprintf('LIMIT %s, %s ', array_get($filter, 'offset', 0), array_get($filter, 'limit', 10));
 
-        $rows = $this->_dal($query)
+        $rows = $this->_pdo()
                 ->query($query)
                     ->fetchAll(\PDO::FETCH_ASSOC);
         
-        $total = $this->_dal($query)->query('SELECT FOUND_ROWS() AS total')->fetchColumn();
+        $total = $this->_pdo()->query('SELECT FOUND_ROWS() AS total')->fetchColumn();
         
         return [
             

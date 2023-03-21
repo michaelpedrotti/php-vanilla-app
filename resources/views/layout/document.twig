@@ -81,6 +81,17 @@
 
           </div>
         </div>
+            <script type="text/javascript">
+                
+                function onConfirmDelete(id, resource){
+                    
+                    if(confirm('Are you sure?')){
+                        
+                        window.location = resource + '/' + id + '/delete';
+                    }
+                }
+                
+            </script>
     </body> 
 </html>
 

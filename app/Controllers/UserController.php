@@ -136,9 +136,22 @@ class UserController extends AbstractController {
     }
     
     
-    static public function delete(){
+    static public function delete($id){
         
-        return 'delete';
+        $service = new \App\Services\UserService();
+        $data = $service->find($id);
+        
+        if(empty($data)){
+            
+            // Flash message
+            redirect('/user');
+        }
+        else {
+            
+            $service->delete($id);
+            
+            redirect('/user');
+        }
     }
     
     
@@ -146,6 +159,10 @@ class UserController extends AbstractController {
         
         $service = new \App\Services\UserService();
         $vars = $service->paginate();
+        
+        
+        $vars['offset'] = find_body('offset', 0);
+        $vars['limit'] = find_body('limit', $vars['total'] < 10 ? $vars['total'] : 10);
         
         return static::_view('user/index.twig', $vars);
         

@@ -86,7 +86,20 @@ class ColorController extends AbstractController {
     
     static public function delete(){
         
-        return 'delete';
+        $service = \App\Services\ColorService::newInstance();
+        $data = $service->find($id);
+        
+        if(empty($data)){
+            
+            // Flash message
+            redirect('/color');
+        }
+        else {
+            
+            $service->delete($id);
+            
+            redirect('/color');
+        }
     }
     
     
@@ -94,6 +107,9 @@ class ColorController extends AbstractController {
         
         $service = new \App\Services\ColorService();
         $vars = $service->paginate();
+        
+        $vars['offset'] = find_body('offset', 0);
+        $vars['limit'] = find_body('limit', $vars['total'] < 10 ? $vars['total'] : 10);
         
         return static::_view('color/index.twig', $vars);
         

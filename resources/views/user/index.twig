@@ -28,14 +28,14 @@
                     <td style="text-align:center">
                         <a href="/user/{{ row.id }}" class="btn-link">Show</a>
                         <a href="/user/{{ row.id }}/edit" class="btn-link">Edit</a>
-                        <a href="javascript:void(0)" class="btn-link">Delete</a>
+                        <a href="javascript:void(0)" onclick="onConfirmDelete('{{ row.id }}', '/user')" class="btn-link">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
         {% endif %}
     </tbody>
     <tfoot>
-        0 of 10 from {{ total }}  
+        {{ offset + 1 }} of {{ limit }} from {{ total }}  
     </tfoot>
 </table>
 {% endblock %}
