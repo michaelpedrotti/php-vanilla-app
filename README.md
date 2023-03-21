@@ -13,17 +13,25 @@ Uses a number of open source projects to work properly:
 
 # 3 - Development
 
-With docker, just execute:
+With docker, in the root project directory, just execute:
 
 ```sh
 docker-compose up -d
 ```
 
+To stop:
+```sh
+docker-compose stop
+```
+
+To stop:
+```sh
+docker-compose start
+```
+
 There is not any migrator provider. So, you will need to connect with MySQL Workbench on mysql container and execute each sql file in `migrations` directory.
 
 # 4 - Deploy
-
-## 4.1 - Docker
 
 There is no deploy. It's just a proof of concept.
 
