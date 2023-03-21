@@ -11,8 +11,8 @@
     <thead>
         <tr>
             <th>Name</th>
-            <th>E-mail</th>
-            <th>Actions</th>
+            <th>Hex</th>
+            <th style="text-align:center">Actions</th>
         </tr>  
     </thead>
     <tbody>
@@ -24,8 +24,9 @@
             {% for row in rows %} 
                 <tr>
                     <td>{{ row.name }}</td>
-                    <td>{{ row.email }}</td>
-                    <td style="width: 10rem; text-align:center">
+                    <td>{{ row.hex }}</td>
+                    <td style="text-align:center">
+                        <a href="/color/{{ row.id }}" class="btn-link">Show</a>
                         <a href="/color/{{ row.id }}/edit" class="btn-link">Edit</a>
                         <a href="javascript:void(0)" class="btn-link">Delete</a>
                     </td>

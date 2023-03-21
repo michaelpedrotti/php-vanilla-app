@@ -13,7 +13,7 @@ class ColorController extends AbstractController {
         try {
            
             $service = new \App\Services\ColorService();
-            $service->create(filter_body(['email', 'name']));
+            $service->create(filter_body(['name', 'hex']));
             
             redirect('/color');
         }
@@ -68,7 +68,7 @@ class ColorController extends AbstractController {
         try {
            
             $service = new \App\Services\ColorService();
-            $service->update(filter_body(['email', 'name']), $id);
+            $service->update(filter_body(['name', 'hex']), $id);
             
             redirect('/color');
         }

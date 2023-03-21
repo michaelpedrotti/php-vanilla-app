@@ -8,7 +8,25 @@
       <div class="form-group">
         <label>Name</label>
         <div class="form-control">{{ data.name }}</div>
-      </div>     
+      </div>  
+      
+       <div class="card" style="margin-top:2rem; margin-bottom: 2rem">
+        <div class="card-body">
+          <h4 class="card-title">Colors</h4>
+            <div class="row">
+               
+                {% for index, row in colors %}
+                    <div class="col-sm-3">
+                        <div class="form-check">
+                            <input type="checkbox" {% if row.id in user_colors %}checked="checked" {% endif %} name="color[{{ index }}]" diabled="disabled" readonly="readonly" class="form-check-input" id="exampleCheck{{ index }}">
+                            <label class="form-check-label" for="exampleCheck{{ index }}">{{ row.name }}</label>
+                        </div>
+                    </div> 
+                {% endfor %}  
+            </div>
+        </div>
+      </div>
+      
       <a href="/user" class="btn btn-link btn-secondary">Back</a>
     </form>
 {% endblock %}

@@ -12,7 +12,7 @@
         <tr>
             <th>Name</th>
             <th>E-mail</th>
-            <th>Actions</th>
+            <th style="text-align:center">Actions</th>
         </tr>  
     </thead>
     <tbody>
@@ -25,7 +25,8 @@
                 <tr>
                     <td>{{ row.name }}</td>
                     <td>{{ row.email }}</td>
-                    <td style="width: 10rem; text-align:center">
+                    <td style="text-align:center">
+                        <a href="/user/{{ row.id }}" class="btn-link">Show</a>
                         <a href="/user/{{ row.id }}/edit" class="btn-link">Edit</a>
                         <a href="javascript:void(0)" class="btn-link">Delete</a>
                     </td>

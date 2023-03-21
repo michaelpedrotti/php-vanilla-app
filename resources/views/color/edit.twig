@@ -3,12 +3,12 @@
     <form action="/color/{{ data.id }}/update" method="post">
       <div class="form-group">
         <label>E-mail</label>
-        <input type="email" name="email" class="form-control" value="{{ data.email }}">
+        <input type="text" name="name" class="form-control" value="{{ data.name }}">
         {#<small class="form-text text-muted">error</small>#}
       </div>
       <div class="form-group">
-        <label>Name</label>
-        <input type="text" name="name" class="form-control" value="{{ data.name }}">
+        <label>Hex</label>
+        <input type="text" name="hex" class="form-control" value="{{ data.hex }}">
       </div>
       <button type="submit" class="btn btn-primary">Update</button>
       <a href="/color" class="btn btn-link btn-secondary">Back</a>

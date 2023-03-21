@@ -2,25 +2,25 @@
 
 abstract class AbstractService {
     
-    protected $conn;
+    static protected $conn;
     
     /**
      * 
      * @return \PDO
      */
-    protected function _dal(){
+    static public function _pdo(){
         
         
-        if (empty($this->conn)) {
+        if (empty(static::$conn )) {
 
             $dsn = sprintf('mysql:host=%s;port=%s;dbname=%s', 'mysql', '3306', 'app');
 
-            $this->conn = new \PDO($dsn, 'root', 'root');
-            $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            $this->conn->setAttribute(\PDO::ATTR_AUTOCOMMIT, true);
+            static::$conn = new \PDO($dsn, 'root', 'root');
+            static::$conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            static::$conn->setAttribute(\PDO::ATTR_AUTOCOMMIT, true);
             //print_r($conn->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN, 0));
         }
 
-        return $this->conn;
+        return static::$conn ;
     }
 }

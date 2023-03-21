@@ -4,12 +4,29 @@
       <div class="form-group">
         <label>E-mail</label>
         <input type="email" name="email" class="form-control" value="{{ data.email }}">
-        {#<small class="form-text text-muted">error</small>#}
       </div>
       <div class="form-group">
         <label>Name</label>
         <input type="text" name="name" class="form-control" value="{{ data.name }}">
       </div>
+      
+       <div class="card" style="margin-top:2rem; margin-bottom: 2rem">
+        <div class="card-body">
+          <h4 class="card-title">Colors</h4>
+            <div class="row">
+               
+                {% for index, row in colors %}
+                    <div class="col-sm-3">
+                        <div class="form-check">
+                            <input type="checkbox" name="colors[{{ index }}]" {% if row.id in user_colors %}checked="checked" {% endif %} value="{{ row.id }}" class="form-check-input" id="exampleCheck{{ index }}">
+                            <label class="form-check-label" for="exampleCheck{{ index }}">{{ row.name }}</label>
+                        </div>
+                    </div> 
+                {% endfor %}  
+            </div>
+        </div>
+      </div>
+      
       <button type="submit" class="btn btn-primary">Update</button>
       <a href="/user" class="btn btn-link btn-secondary">Back</a>
     </form>
